@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Rust Sunucusuna Bağlanılıyor...</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #1B1F26;
+      color: #fff;
+      font-family: sans-serif;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 0.5em;
+    }
+    p {
+      margin-top: 0;
+      margin-bottom: 1.5em;
+    }
+    #backup {
+      display: none;
+      margin-top: 1em;
+    }
+    #backup p {
+      margin-bottom: 0.5em;
+    }
+    #backup code {
+      background: #333;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      user-select: none;
+    }
+    #copy-msg {
+      font-size: 0.9em;
+      color: rgb(0, 255, 234);
+      margin-top: +0.7em;        
+      visibility: hidden;        
+      position: relative;
+      top: -0.5em;
+    }
+  </style>
+</head>
+<body>
+  <h2>Rust sunucusuna bağlanılıyor...</h2>
+  <p>Lütfen bekleyin. Oyun otomatik olarak açılmalıdır.</p>
+  
+  <div id="backup">
+    <p>Bağlantı çalışmazsa, Rust’ın oyun konsoluna aşağıdaki komutu yapıştırın:</p>
+    <code id="copy-text">client.connect eutrio.rustafied.com:28015</code>
+    <div id="copy-msg">Kopyalandı!</div>
+  </div>
+
+  <script>
+    window.onload = function() {
+      window.location.href = "steam://run/252490//+connect%2091.124.63.88:28015/";
+      setTimeout(function(){
+        document.getElementById("backup").style.display = "block";
+      }, 2000);
+    };
+
+    // copy-to-clipboard işlevi
+    const codeEl = document.getElementById('copy-text');
+    const msgEl  = document.getElementById('copy-msg');
+    codeEl.addEventListener('click', function(){
+      navigator.clipboard.writeText(codeEl.textContent).then(function(){
+        msgEl.style.visibility = 'visible';
+        setTimeout(function(){
+          msgEl.style.visibility = 'hidden';
+        }, 2000);
+      });
+    });
+  </script>
+</body>
+</html>
